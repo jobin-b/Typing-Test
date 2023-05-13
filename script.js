@@ -52,6 +52,8 @@ Test = function(){
     this.active = true;
     this.correct = 0;
     this.incorrect = 0;
+    document.getElementById("correct").innerText = this.correct;
+    document.getElementById("incorrect").innerText = this.incorrect;
     this.startTest = function(){
         let output = genOutput();
         document.getElementById("output").innerText = output;
@@ -85,7 +87,7 @@ Test = function(){
         if(total === 0){
             percent = 0;
         } else {
-            percent = Math.round(test.correct/total);
+            percent = Math.round((test.correct/total) * 100);
         }
         result.innerText = `You completed ${total} entries with ${percent}% accuracy.`;
     }
