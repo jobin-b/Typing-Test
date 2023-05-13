@@ -1,6 +1,5 @@
 const start = document.getElementById("start");
 
-
 let test = null;
 const Watch = function(){
     this.sec = 0;
@@ -39,10 +38,17 @@ start.addEventListener("click", (e) =>{
 
 function genOutput(){
     output = "";
-    for (let i = 0; i < 4; i++) {
-        let ascii = Math.floor((Math.random() * 26) + 65);
-        output += String.fromCharCode(ascii);
-    }
+    let file = new XMLHttpRequest()
+    file.open("GET", "names.txt", false);
+    file.send(null);
+    let names = file.responseText;
+    names = names.split("\n");
+
+    let index = Math.floor((Math.random() * 190));
+    let name = names[index];
+    name = name.substring(0,4);
+    output += name.toUpperCase();
+
     for (let i = 0; i < 3; i++) {
         output += Math.floor((Math.random() * 10));
     }
@@ -71,7 +77,7 @@ Test = function(){
                 }
                 output = genOutput();
                 document.getElementById("output").innerText = output;
-                if(this.correct + this.incorrect === 50) {
+                if(this.correct + this.incorrect === 60) {
                     this.endTest();
                 };
             }
