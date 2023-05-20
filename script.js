@@ -30,6 +30,9 @@ const Watch = function(){
 }
 start.addEventListener("click", (e) =>{
     start.style.visibility = "hidden";
+    let response = document.getElementById("response");
+    response.focus();
+    response.value = "";
     test = new Test();
     let watch = new Watch();
     watch.startTime();
